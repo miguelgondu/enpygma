@@ -110,7 +110,7 @@ def offseter(letter):
     dictionary[' '] = ' '
     return dictionary
 
-def stringcleaner(message):
+def stringCleaner(message):
     return message.replace('\r', '').replace('\n', ' ').lower()
 
 def enigma(message, _rotors, _starting_positions, _plugboard):
@@ -126,7 +126,8 @@ def enigma(message, _rotors, _starting_positions, _plugboard):
         -Implement it in such a way that all characters that are not in the dict
         are mapped to themselves, fixing the whole punctuation (and spacing) problem.
     '''
-    
+
+    message = stringCleaner(message)
     # Check whether the parameters are actually usable or not
     
     
