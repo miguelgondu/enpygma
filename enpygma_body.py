@@ -70,10 +70,11 @@ Rotor_5_dict_inverse = {v: k for k, v in Rotor_5_dict.items()}
 
 Rotor_5_knocker = 'a'
 
-Reflector_B_dict = {'a': 'y', 'y': 'a', 'b': 'r', 'r': 'b', 'c': 'u', 'u': 'c', 'd': 'h', 'h': 'd',
-                    'e': 'q', 'q': 'e', 'f': 's', 's': 'f', 'g': 'l', 'l': 'g',
-                    'i': 'p', 'p': 'i', 'j': 'x', 'x': 'j', 'k': 'n', 'n': 'k',
-                    'm': 'o', 'o': 'm', 't': 'z', 'z': 't', 'v': 'w', 'w': 'v', ' ': ' '}
+Reflector_B_dict = {'a': 'y', 'y': 'a', 'b': 'r', 'r': 'b', 'c': 'u', 'u': 'c',
+                    'd': 'h', 'h': 'd', 'e': 'q', 'q': 'e', 'f': 's', 's': 'f',
+                    'g': 'l', 'l': 'g', 'i': 'p', 'p': 'i', 'j': 'x', 'x': 'j',
+                    'k': 'n', 'n': 'k', 'm': 'o', 'o': 'm', 't': 'z', 'z': 't',
+                    'v': 'w', 'w': 'v', ' ': ' '}
 
 def getInverseDict(_dict):
     return {v: k for k, v in _dict.items()}
@@ -128,6 +129,8 @@ def enigma(message, _rotors, _starting_positions, _plugboard):
     
     
     reflector, left_rotor, middle_rotor, right_rotor = _rotors
+
+    _plugboard = plugboardCompleter(_plugboard)
     
     left_rotor.setCurrentPosition(_starting_positions[0])
     middle_rotor.setCurrentPosition(_starting_positions[1])
@@ -193,10 +196,13 @@ Rotor_3 = rotor(Rotor_3_dict, _knocker = Rotor_3_knocker)
 Rotor_4 = rotor(Rotor_4_dict, _knocker = Rotor_4_knocker)
 Rotor_5 = rotor(Rotor_5_dict, _knocker = Rotor_5_knocker)
 
+all_rotors = (Rotor_1, Rotor_2, Rotor_3, Rotor_4, Rotor_5)
+reflector_B = Reflector_B_dict
+
 rotors = (Reflector_B_dict, Rotor_1, Rotor_2, Rotor_3)
 starting_positions = ('b','a','a')
 plugboard = {'b':'t', 'c':'u', 'f':'q', 'g':'z', 'i':'a', 'j':'o', 'n':'v', 'p':'e', 's': 'l', 'y':'m'}
-plugboard = plugboardCompleter(plugboard)
+# plugboard = plugboardCompleter(plugboard)
 # print(plugboard)
 encrypted_message = enigma(message, rotors, starting_positions, plugboard)
 print('Message to encrypt: ' + message)
