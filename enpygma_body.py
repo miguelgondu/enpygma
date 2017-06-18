@@ -186,6 +186,7 @@ def plugboardCompleter(plugboard):
 
 message = 'miguel miguel miguel miguel'
 message.replace('\r', '')
+
 Rotor_1 = rotor(Rotor_1_dict, _knocker = Rotor_1_knocker)
 Rotor_2 = rotor(Rotor_2_dict, _knocker = Rotor_2_knocker)
 Rotor_3 = rotor(Rotor_3_dict, _knocker = Rotor_3_knocker)
