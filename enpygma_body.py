@@ -1,10 +1,11 @@
+from string import ascii_lowercase as alphabet
+
 def isOnetoOne(dict1):
     list_of_values = []
     set_of_values = set([])
     for key in dict1:
         list_of_values.append(dict1[key])
         set_of_values.add(dict1[key])
-    #print(list_of_values)
     if len(list_of_values) == len(set_of_values):
         return True
     else:
@@ -81,7 +82,6 @@ def getInverseDict(_dict):
 
 def getComposite(dict1, dict2):
     return {k: dict2[dict1[k]] for k in dict1}
-from string import ascii_lowercase as alphabet
 
 class rotor:
     def __init__(self, _rotor_dict, _starting_position = 'a', _knocker = 'a'):
@@ -115,14 +115,16 @@ def stringcleaner(message):
 
 def enigma(message, _rotors, _starting_positions, _plugboard):
     '''
-    This function encrypts/decrypts a string simulating the enigma machine whose set up is given by
-        -_rotors: a tuple with a reflector and three rotor objects which correspond to the left,
-                  middle and right rotors respectively.
-        -_starting_positions: a tuple with three letters stating the starting positions of said rotors.
+    This function encrypts/decrypts a string simulating the enigma machine whose
+    set up is given by
+        -_rotors: a tuple with a reflector and three rotor objects which
+        correspond to the left, middle and right rotors respectively.
+        -_starting_positions: a tuple with three letters stating the starting
+        positions of said rotors.
         
     To-Do:
-        -Implement it in such a way that all characters that are not in the dict are mapped to themselves,
-         fixing the whole punctuation (and spacing) problem.
+        -Implement it in such a way that all characters that are not in the dict
+        are mapped to themselves, fixing the whole punctuation (and spacing) problem.
     '''
     
     # Check whether the parameters are actually usable or not
@@ -135,14 +137,18 @@ def enigma(message, _rotors, _starting_positions, _plugboard):
     left_rotor.setCurrentPosition(_starting_positions[0])
     middle_rotor.setCurrentPosition(_starting_positions[1])
     right_rotor.setCurrentPosition(_starting_positions[2])
-    #Encrypt using a for for each letter in string. Be wary of white spaces when turning rotors.
+    #Encrypt using a for for each letter in string. Be wary of white spaces when
+    #turning rotors.
     
-    #The order is: recieve a letter, rotate right-most rotor, pass it through the plugboard,
-    #pass it through the rotors, bounce it, pass it throught the rotors again, pass it through the plugboard
-    #and save it.
+    #The order is: recieve a letter, rotate right-most rotor, pass it through
+    #the plugboard, pass it through the rotors, bounce it, pass it throught the
+    #rotors again, pass it through the plugboard and save it.
     
     encrypted_message = ''
     for letter in message:
+        if letter not in alphabet:
+            encrypted_message += letter
+
         #Turn the rotor mechanisms.
         right_rotor.turn()
         if right_rotor.current_position == right_rotor.knocker:
@@ -187,9 +193,6 @@ def plugboardCompleter(plugboard):
     complete_plugboard[' '] = ' '
     return complete_plugboard
 
-message = 'miguel miguel miguel miguel'
-message.replace('\r', '')
-
 Rotor_1 = rotor(Rotor_1_dict, _knocker = Rotor_1_knocker)
 Rotor_2 = rotor(Rotor_2_dict, _knocker = Rotor_2_knocker)
 Rotor_3 = rotor(Rotor_3_dict, _knocker = Rotor_3_knocker)
@@ -198,17 +201,3 @@ Rotor_5 = rotor(Rotor_5_dict, _knocker = Rotor_5_knocker)
 
 all_rotors = (Rotor_1, Rotor_2, Rotor_3, Rotor_4, Rotor_5)
 reflector_B = Reflector_B_dict
-
-rotors = (Reflector_B_dict, Rotor_1, Rotor_2, Rotor_3)
-starting_positions = ('b','a','a')
-plugboard = {'b':'t', 'c':'u', 'f':'q', 'g':'z', 'i':'a', 'j':'o', 'n':'v', 'p':'e', 's': 'l', 'y':'m'}
-# plugboard = plugboardCompleter(plugboard)
-# print(plugboard)
-encrypted_message = enigma(message, rotors, starting_positions, plugboard)
-print('Message to encrypt: ' + message)
-print('Encrypted message: ' + enigma(message, rotors, starting_positions, plugboard))
-print('Decrypted message: ' + enigma(encrypted_message, rotors, starting_positions, plugboard))
-# decripted_message = enigma(encrypted_message, rotors, starting_positions, plugboard)
-# print(message == decripted_message)
-
-
