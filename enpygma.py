@@ -32,8 +32,6 @@ Rotor_2_dict = {'a': 'a', 'b': 'j', 'c': 'd', 'd': 'k',
 
 Rotor_2_dict_inverse = {v: k for k, v in Rotor_2_dict.items()}
 
-print(isOnetoOne(Rotor_2_dict))
-
 Rotor_2_knocker = 'f'
 
 Rotor_3_dict = {'a': 'b', 'b': 'd', 'c': 'f', 'd': 'h',
@@ -46,8 +44,6 @@ Rotor_3_dict = {'a': 'b', 'b': 'd', 'c': 'f', 'd': 'h',
 
 Rotor_3_dict_inverse = {v: k for k, v in Rotor_3_dict.items()}
 
-print(isOnetoOne(Rotor_3_dict))
-
 Rotor_3_knocker = 'w'
 
 Rotor_4_dict = {'a': 'e', 'b': 's', 'c': 'o', 'd': 'v',
@@ -59,8 +55,6 @@ Rotor_4_dict = {'a': 'e', 'b': 's', 'c': 'o', 'd': 'v',
            'y': 'w', 'z': 'b', ' ': ' '}
 
 Rotor_4_dict_inverse = {v: k for k, v in Rotor_4_dict.items()}
-
-print(isOnetoOne(Rotor_4_dict))
 
 Rotor_4_knocker = 'k'
 
